@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Album {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(250)
+  artistId    Int
+  artist      Artist @relation(fields: [artistId], references: [id])
+  genreId     Int
+  genre       Genre  @relation(fields: [genreId], references: [id])
+  artworkPath String @db.VarChar(500)
+  songs       Song[]
+}
+
+model Artist {
+  id     Int     @id @default(autoincrement())
+  name   String  @db.VarChar(50)
+  albums Album[]
+  songs  Song[]
+}
+
+model Genre {
+  id     Int     @id @default(autoincrement())
+  name   String  @db.VarChar(50)
+  albums Album[]
+  songs  Song[]
+}
+
+model Song {
+  id         Int                @id @default(autoincrement())
+  title      String             @db.VarChar(250)
+  artistId   Int
+  artist     Artist             @relation(fields: [artistId], references: [id])
+  albumId    Int
+  album      Album              @relation(fields: [albumId], references: [id])
+  genreId    Int
+  genre      Genre              @relation(fields: [genreId], references: [id])
+  duration   String             @db.VarChar(8)
+  path       String             @db.VarChar(500)
+  albumOrder Int
+  plays      Int
+  playlists  PlaylistsOnSongs[]
+}
+
+model Playlist {
+  id      Int                @id @default(autoincrement())
+  name    String             @db.VarChar(50)
+  owner   String             @db.VarChar(50)
+  created DateTime           @default(now())
+  songs   PlaylistsOnSongs[]
+}
+
+model PlaylistsOnSongs {
+  songId        Int
+  playlistId    Int
+  playlistOrder Int
+
+  song     Song     @relation(fields: [songId], references: [id])
+  playlist Playlist @relation(fields: [playlistId], references: [id])
+  @@id([songId, playlistId])
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String   @db.VarChar(25)
+  firstName  String   @db.VarChar(50)
+  lastName   String   @db.VarChar(50)
+  email      String   @db.VarChar(200)
+  password   String   @db.VarChar(32)
+  signUpDate DateTime @default(now())
+  profilePic String   @db.VarChar(500)
+}
