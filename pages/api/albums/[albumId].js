@@ -1,7 +1,6 @@
-import { PrismaClient } from '.prisma/client';
+import prisma from '@/lib/prisma';
 
 export default async function handler(req, res) {
-  const prisma = new PrismaClient({ log: ['query'] });
   const albumId = +req.query.albumId;
 
   try {
@@ -14,7 +13,5 @@ export default async function handler(req, res) {
     res.status(200).json({ album });
   } catch (e) {
     res.status(500).json({ error: 'Unable to fetch album' });
-  } finally {
-    await prisma.$disconnect();
   }
 }

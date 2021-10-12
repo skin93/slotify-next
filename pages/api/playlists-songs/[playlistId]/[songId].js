@@ -1,7 +1,6 @@
-import { PrismaClient } from '.prisma/client';
+import prisma from '@/lib/prisma';
 
 export default async function handler(req, res) {
-  const prisma = new PrismaClient({ log: ['query'] });
   const playlistId = +req.query.playlistId;
   const songId = +req.query.songId;
 
@@ -35,8 +34,6 @@ export default async function handler(req, res) {
         .json({ messgae: 'Song was successfully removed from the playlist' });
     } catch (err) {
       res.status(500).json({ error: err.message });
-    } finally {
-      await prisma.$disconnect();
     }
   }
 }
