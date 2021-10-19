@@ -23,11 +23,8 @@ export const HeaderContainer = styled.div`
   align-items: center;
 
   @media (min-width: 992px) {
-    height: 80px;
-  }
-
-  @media (min-width: 992px) {
     max-width: 970px;
+    height: 80px;
   }
 
   @media (min-width: 1200px) {
