@@ -23,5 +23,9 @@ export const NavItem = styled.li.attrs((props) => ({
     color: ${(props) => props.theme.colors.text.white};
     font-weight: 700;
     padding: 28px 17px;
+
+    &:hover {
+      color: ${(props) => props.theme.colors.primary};
+    }
   }
 `;
