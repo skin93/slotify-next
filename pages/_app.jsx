@@ -1,12 +1,18 @@
 import { Fragment } from 'react';
-import '@/styles/globals.css';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from '@/styles/globalStyle';
+import TheHeader from '@/components/layout/TheHeader';
 
 function MyApp({ Component, pageProps }) {
   return (
     <Fragment>
-      <main>
-        <Component {...pageProps} />
-      </main>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <TheHeader />
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
     </Fragment>
   );
 }
