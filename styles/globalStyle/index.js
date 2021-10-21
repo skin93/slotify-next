@@ -14,6 +14,8 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body {
+  display: block;
+  position: relative;
   background-color: #121212;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #fff;
@@ -37,6 +39,7 @@ export const theme = {
     },
     background: {
       hero: 'rgb(41, 65, 171)',
+      dark: '#000',
     },
   },
 };

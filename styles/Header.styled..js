@@ -6,6 +6,7 @@ export const HeaderWrapper = styled.header`
   background: transparent;
   display: inline-flex;
   line-height: 1.5;
+  position: relative;
 
   @media (min-width: 992px) {
     height: 80px;

@@ -5,6 +5,7 @@ export const HamburgerWrapper = styled.div`
   padding: 0 0 1px 9px;
   height: 54px;
   margin-top: -1px;
+  z-index: 1;
 
   @media (min-width: 992px) {
     display: none;
