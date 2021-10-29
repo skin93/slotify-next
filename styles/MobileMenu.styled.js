@@ -1,5 +1,5 @@
 import Brand from '@/components/layout/TheHeader/Brand';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const MobileMenuOverlay = styled.div`
   position: fixed;
@@ -10,9 +10,14 @@ export const MobileMenuOverlay = styled.div`
   background-color: ${(props) =>
     props.toggleMenu ? 'rgba(0,0,0,0.5)' : 'inherit'};
   transition: all 0.3s ease-in-out;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
 `;
 
 export const MobileMenuWrapper = styled.nav`
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
@@ -20,12 +25,15 @@ export const MobileMenuWrapper = styled.nav`
   width: 447px;
   padding: 38px;
   overflow-x: hidden;
-  overflow-y: scroll;
   position: fixed;
   top: 0;
   right: ${(props) => (props.toggleMenu ? '0' : '-100%')};
   background: ${(props) => props.theme.colors.background.dark};
   transition: all 0.3s ease-in-out;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
 `;
 
 export const MenuItems = styled.ul`
